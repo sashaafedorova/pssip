@@ -1,0 +1,107 @@
+<!DOCTYPE html> 
+<head> 
+    <meta charset="utf-8"/>
+    <title>Теги HTML</title> 
+    <style> 
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        nav ul li {
+            display: inline;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+        }
+        .odin .dva:first-child {
+        color: blue;
+        }
+        .odin .dva:last-child {
+        color: red;
+        }
+        .odin .dva:nth-child(3) {
+        color: green;
+        }
+        div {
+        border: 1px solid black;
+        margin: 25px 50px;
+        background-color: lightblue;
+        }
+        ul[style="list-style-type:square"] {
+      background: #92c8ff;
+      padding: 10px;
+    }
+    ul[style="list-style-type:square"] li {
+      background: #cce5ff;
+      margin: 5px;
+    }
+    div::first-letter {
+    color: #490000;
+    font-size: xx-large;
+}
+div::first-line {
+  color: #ff0000;
+  font-variant: small-caps;
+}
+    </style> 
+</head> 
+<body> 
+    <div class="content">
+        <h1 id="C4" style="text-align:center;">Списки</h1> 
+        </div>
+    <nav> 
+        <ul> 
+            <li><a href="Главная_страница.html">Главная страница</a></li> 
+            <li><a href="page2.html">HTML Атрибуты</a></li> 
+            <li><a href="page3.html">HTML Заголовки</a></li> 
+            <li><a href="page4.html">HTML Таблицы</a></li>  
+            <li><a href="page5.html">HTML Изображения</a></li> 
+            <li><a href="page6.html">HTML Списки</a></li> 
+        </ul> 
+    </nav> 
+  <ul style="list-style-type:circle">
+   <li><a href="Файлы.html">Файлы</a></li>
+   <li>Таблицы</li>
+   <li>Атрибуты</li>
+  </ul>  
+  <ul style="list-style-type:square">
+    <li>Таблица</li>
+    <li>Изображение</li>
+    <li>Атрибуты</li>
+   </ul>  
+  <ol type="1">
+    <li>Таблица</li>
+    <li>Изображение</li>
+    <li>Атрибуты</li>
+   </ol>  
+   <ul class="odin">
+    <li class="dva">Таблица</li>
+    <li class="dva">Файлы
+       
+     <ul>
+       <li class="dva">Фото</li>
+     </ul>
+    </li>
+    <li class="dva">Атрибуты</li>
+   </ul>
+   <ol class="odin" start="6">
+    <li class="dva">Фото</li>
+    <li class="dva">Видео</li>
+    <li class="dva">Аудио</li>
+  </ol>  
+  <div class="nam"></div>
+ </body>
+</html>

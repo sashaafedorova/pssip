@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        /* CSS для стилей кнопки и контейнера */
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999; /* Обеспечивает, чтобы кнопка была поверх других элементов */
+        }
+        
+        .blob-btn {
+            padding: 20px 46px;
+            text-transform: uppercase;
+            color: #0505A9;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            transition: color 0.5s;
+            cursor: pointer;
+            border-radius: 30px;
+            display: block;
+            position: relative;
+        }
+        
+        .blob-btn:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #0505A9;
+            border-radius: 30px;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+        
+        .blob-btn:hover:before {
+            transform: scale(1.02);
+        }
+        
+        .blob-btn__inner {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blob-btn__blobs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .blob-btn__blob {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #0505A9;
+            margin: 0 5px;
+            animation: blobAnimation 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes blobAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript</h1>
+
+    <div class="task">
+        <h2>Работа с объектом Date</h2>
+        <button onclick="showMonth()">Показать месяц</button>
+    </div>
+
+    <div class="task">
+        <h2>Работа с операторами организации циклов</h2>
+        <button onclick="showName26Times()">Показать Фамилию и Имя 26 раз</button>
+        <div id="nameOutput"></div>
+        <script>
+            // Работа с операторами организации циклов
+            function showName26Times() {
+                const name = "Фёдорова Александра"; 
+                let output = "";
+                for (let i = 0; i < 26; i++) {
+                    output += name + "<br>";
+                }
+                document.getElementById("nameOutput").innerHTML = output;
+            }
+        </script>
+    </div>
+
+    <div class="task">
+        <h2>Работа с объектом Array</h2>
+        <button onclick="showArrayAndMax()">Показать массив и максимальный элемент</button>
+        <div id="arrayOutput"></div>
+        <script>
+            // Работа с объектом Array
+            function showArrayAndMax() {
+                const array = [5, 12, 8, 21, 6, 14, 7];
+                document.getElementById("arrayOutput").innerHTML = "Массив: " + array.join(", ") + "<br>";
+                const max = Math.max(...array);
+                document.getElementById("arrayOutput").innerHTML += "Максимальный элемент массива: " + max;
+            }
+        </script>
+    </div>
+
+    <div class="task">
+        <h2>Работа с объектом Math</h2>
+        <input type="number" id="aInput" placeholder="Введите значение a">
+        <input type="number" id="xInput" placeholder="Введите значение x">
+        <button id="calculateButton">Вычислить выражение</button>
+        <div id="mathOutput"></div>
+    </div>
+
+    <div class="task">
+        <h2>Работа со строками STRING</h2>
+        <button onclick="stringTasks()">Выполнить задания со строками</button>
+        <div id="stringOutput"></div>
+    </div>
+
+    <!-- Кнопка "На главную" -->
+    <div class="button-container">
+        <button class="blob-btn" onclick="window.location.href='file:///C:/Users/USER/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%BF%D1%81%D1%81%D0%B8%D0%BF/%D0%BB%D1%8013-14.html'">
+            На главную
+            <span class="blob-btn__inner">
+                <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                </span>
+            </span>
+        </button>
+    </div>
+
+    <!-- SVG для анимации кнопки -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+                <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Скрипт для кнопки "Вычислить выражение" -->
+    <script>
+        document.getElementById("calculateButton").addEventListener("click", function() {
+            const a = parseFloat(document.getElementById("aInput").value);
+            const x = parseFloat(document.getElementById("xInput").value);
+            const result = Math.pow(a, x);
+            document.getElementById("mathOutput").innerHTML = `Результат выражения ${a} в степени ${x} равен ${result}`;
+        });
+    </script>
+
+</body>
+</html>

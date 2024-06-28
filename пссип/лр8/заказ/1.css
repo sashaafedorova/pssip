@@ -1,0 +1,79 @@
+.container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.container{
+    grid-template-columns: [column1] 20px [column2] 500px [column3] 300px [end];
+    grid-template-rows: [row1] 800px [row2] 200px [last];
+    }
+
+p {
+    font-size: 20px;
+}
+
+.label1 { 
+    margin-right: 90px; 
+    float: left;
+}
+
+.label2 {
+    margin-right: 82px; 
+    float: left;
+}
+
+select.type1 {
+    margin-left: 85px; 
+}
+
+.check1 {
+    margin-left: 88px; 
+}
+
+.check2 {
+    margin-left: 168px; 
+}
+
+.radio1 {
+    margin-left: 80px; 
+}
+    
+.radio2 {
+    margin-left: 167px; 
+}
+
+.date {
+    margin-left: 23px; 
+}
+
+.textarea {
+    margin-left: -35px; 
+}
+
+.esciz {
+    margin-left: 63px;
+}
+
+.kod {
+    margin-left: 69px;
+    width: 100px;
+}
+
+.image {
+    grid-column: column3 / end; 
+    grid-row: row2 / last ; 
+    width: 100px;
+    margin-left: 25px;
+}
+
+.icon {
+    width: 15px;
+    margin-left: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .row {
+    grid-template-columns: 1fr; 
+  }
+}

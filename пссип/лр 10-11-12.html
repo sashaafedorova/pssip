@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+    <script> 
+    // Работа с объектом Date
+    function showMonth() {
+    const month = new Date().getMonth() + 1; 
+    alert("Текущий месяц: " + month);
+    }
+    </script>
+</head>
+<body>
+    <h1>JavaScript</h1>
+
+    <div class="task">
+        <h2>Работа с объектом Date</h2>
+        <button onclick="showMonth()">Показать месяц</button>
+    </div>
+
+    <div class="task">
+        <h2>Работа с операторами организации циклов</h2>
+        <button onclick="showName26Times()">Показать Фамилию и Имя 26 раз</button>
+        <div id="nameOutput"></div>
+        <script>
+            // Работа с операторами организации циклов
+            function showName26Times() {
+            const name = "Фёдорова Александра"; 
+            let output = "";
+            let i = 0;
+            while (i < 26) {
+                output += name + "<br>";
+                i++;
+            }
+            document.getElementById("nameOutput").innerHTML = output;
+            }
+        </script>
+    </div>
+
+    <div class="task">
+        <h2>Работа с объектом Array</h2>
+        <button onclick="showArrayAndMax()">Показать массив и максимальный элемент</button>
+        <div id="arrayOutput"></div>
+        <script>
+            // Работа с объектом Array
+            function showArrayAndMax() {
+                const array = [5, 12, 8, 21, 6, 14, 7];
+                document.getElementById("arrayOutput").innerHTML = "Массив: " + array.join(", ") + "<br>";
+                const max = Math.max(...array);
+                document.getElementById("arrayOutput").innerHTML += "Максимальный элемент массива: " + max;
+            }
+        </script>
+    </div>
+    
+
+    <div class="task">
+        <h2>Работа с объектом Math</h2>
+        <input type="number" id="aInput" placeholder="Введите значение a">
+        <input type="number" id="xInput" placeholder="Введите значение x">
+        <button id="calculateButton">Вычислить выражение</button>
+        <div id="mathOutput"></div>
+    </div>
+
+    <div class="task">
+        <h2>Работа со строками STRING</h2>
+        <button onclick="stringTasks()">Выполнить задания со строками</button>
+        <div id="stringOutput"></div>
+    </div>
+</body>
+</html>

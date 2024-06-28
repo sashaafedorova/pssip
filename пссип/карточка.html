@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вариант №21</title>
+    <style>
+        .highlighted {
+            background-color: red;
+            color: blue;
+        }
+        .moved {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <div id="fullName">Фёдорова Александра Дмитриевна</div>
+        <a id="favoriteSite" href="https://ast.ru/cat/?ast_utm=menu_cat">Любимый сайт</a>
+        <img id="favoriteImage" src="https://thypix.com/wp-content/uploads/2018/05/Sommerlandschaft-Bilder-40.jpg" alt="Пример изображения" width="200" height="200">
+    </div>
+  
+    <form id="userForm">
+        <p><b>Заказ сайта</b></p> 
+        <label class="label1" for="username">Ваше имя*:</label>  
+        <input type="text" id="username" name="username" required minlength="2" maxlength="50">
+        
+        <label class="label2" for="email">Ваш e-mail*:</label>  
+        <input type="email" id="email" name="email" required> 
+
+        <label for="type">Тип сайта*:</label>  
+        <select class="type1" id="type" name="type" required>  
+            <option value="">Выберите тип сайта</option>  
+            <option value="info">Информационные сайты</option>  
+            <option value="E-commerce">Электронная коммерция</option>  
+            <option value="blog">Блоги и личные сайты</option>  
+        </select> 
+ 
+        <label for="type">Язык сайта</label> 
+        <input class="check1" type="checkbox" id="language" name="language" value="Русский"> 
+        <label for="language">Русский</label>
+        <input class="check2" type="checkbox" id="language" name="language" value="Английский"> 
+        <label for="language">Английский</label><br> 
+        <input class="check2" type="checkbox" id="language" name="language" value="Испанский"> 
+        <label for="language">Испанский</label><br><br>
+ 
+        <label for="type">Тип верстки</label> 
+        <input class="radio1" type="radio" id="typeTable" name="layout" value="Таблицами"> 
+        <label for="typeTable">Таблицами</label>
+        <input class="radio2" type="radio" id="typeDiv" name="layout" value="DIVами"> 
+        <label for="typeDiv">DIVами</label><br> 
+        <input class="radio2" type="radio" id="typeAny" name="layout" value="Любой"> 
+        <label for="typeAny">Любой</label><br><br>
+ 
+        <label for="date">Срок создания сайта</label> 
+        <input class="date" type="date" id="date" name="date" required>
+ 
+        <label class="label1" for="message">Дополнительная <br> информация:</label>  
+        <textarea class="textarea" id="message" name="message" rows="3" cols="20" style="resize: vertical;" minlength="5" maxlength="200"></textarea><br><br> 
+ 
+        <label for="type">Прикрепить эскиз <br> дизайна сайта:</label>  
+        <input class="esciz" type="file" id="esciz" name="esciz"> 
+        <button type="button">Обзор...</button>
+
+        <label for="type">Введите код*:</label>  
+        <input class="kod" type="text" id="kod" name="kod" required minlength="4" maxlength="8"> 
+
+        <label for="type"> * - поля обязательные к заполнению</label><br><br>
+        <button type="submit">Отправить заказ</button><br><br><br>
+    </form>
+    <div id="formElements"></div>
+
+    <button onclick="changeStyle()">Изменить стиль</button>
+
+    <div id="clientInfo"></div>
+
+    <div id="validationResult"></div>
+
+    <script>
+        function getFormElements() {
+            const form = document.getElementById('userForm');
+            const elements = form.elements;
+            let output = '<ul>';
+            for (let element of elements) {
+                if (element.tagName === 'INPUT') {
+                    output += `<li>${element.name}: ${element.value}</li>`;
+                }
+            }
+            output += '</ul>';
+            document.getElementById('formElements').innerHTML = output;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(getFormElements, 5000);
+        });
+
+        function changeStyle() {
+            const element = document.getElementById('fullName');
+            element.classList.add('highlighted');
+            setTimeout(() => {
+                element.classList.remove('highlighted');
+                element.classList.add('moved');
+            }, 5000);
+        }
+
+        function showClientInfo() {
+            setTimeout(() => {
+                const clientInfo = `
+                    <p>User Agent: ${navigator.userAgent}</p>
+                    <p>Platform: ${navigator.platform}</p>
+                `;
+                document.getElementById('clientInfo').innerHTML = clientInfo;
+            }, 5000);
+        }
+
+        function validateForm() {
+            const name = document.getElementById('name');
+            const age = document.getElementById('age');
+            let isValid = true;
+            let messages = [];
+
+            if (!name.value) {
+                isValid = false;
+                messages.push('Имя не должно быть пустым.');
+                name.classList.add('error');
+            } else if (name.value.length < 2 || name.value.length > 50) {
+                isValid = false;
+                messages.push('Имя должно быть от 2 до 50 символов.');
+                name.classList.add('error');
+            } else {
+                name.classList.remove('error');
+            }
+
+            if (age.value < 18 || age.value > 120) {
+                isValid = false;
+                messages.push('Возраст должен быть в диапазоне от 18 до 120.');
+                age.classList.add('error');
+            } else {
+                age.classList.remove('error');
+            }
+
+            document.getElementById('validationResult').innerHTML = messages.join('<br>');
+
+            return isValid;
+        }
+
+        function swapElements() {
+            const infoDiv = document.getElementById('info');
+            const siteLink = document.getElementById('favoriteSite');
+            const image = document.getElementById('favoriteImage');
+
+            const tempLink = document.createElement('a');
+            tempLink.href = siteLink.href;
+            tempLink.id = 'favoriteSite';
+            tempLink.innerHTML = siteLink.innerHTML;
+
+            const tempImage = document.createElement('img');
+            tempImage.src = image.src;
+            tempImage.alt = image.alt;
+            tempImage.width = image.width;
+            tempImage.height = image.height;
+            tempImage.id = 'favoriteImage';
+            tempImage.onclick = swapElements;
+
+            infoDiv.replaceChild(tempImage, siteLink);
+            infoDiv.replaceChild(tempLink, image);
+        }
+
+        document.getElementById('favoriteImage').onclick = swapElements;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                alert(`Операционная система: ${navigator.platform}`);
+            }, 6000);
+        });
+
+        document.getElementById('userForm').onsubmit = function() {
+            let isValid = true;
+            let elements = this.elements;
+
+            for (let element of elements) {
+                if (element.tagName === 'INPUT' || element.tagName === 'SELECT' || element.tagName === 'TEXTAREA') {
+                    element.classList.remove('error');
+
+                    if (!element.checkValidity()) {
+                        isValid = false;
+                        element.classList.add('error');
+                    }
+                }
+            }
+
+            return isValid;
+        };
+    </script>
+</body>
+</html>

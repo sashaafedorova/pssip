@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Фёдорова Александра Дмитриевна</title>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        th, td {
+        padding: 5px;
+        text-align: left;    
+        }
+    .top-left {
+        vertical-align: top;
+        text-align: left;
+        } 
+    .center {
+        text-align: center;
+    }
+    .highlight {
+    background-color: #b9b0ff
+    }
+    </style>
+</head>
+<body>
+    <a href="вариант_2.html">На главную</a>
+
+    <table style="width:50%">
+        <tr>
+          <td rowspan="3" class="center"><b>Увлечения</b></td>
+          <td rowspan="3" class="top-left"><b>Что я умею</b></td>
+          <td><b>Web-дизайн</b></td>
+        </tr>
+        <tr>
+          <td class="highlight"><b>Web-дизайн</b></td>
+        </tr>
+        <tr>
+          <td><b>Web-дизайн</b></td>
+        </tr>
+      </table>
+
+    <h2>Форма регистрации</h2>
+    <div class="register">
+        <form action="php/reg.php" method="post">
+            <div class="input-box">
+                <a href=" ">Регистрация</a> / <a href=" ">Забыли свой пароль?</a>  <!-- Ссылки для регистрации и восстановления пароля -->
+                <p>Логин: <input type="text" name="login" class="log_input" placeholder="admin" required></p>
+                <p>Пароль: <input type="password" name="pass" class="log_input"> <button type="submit" class="reg_butt">Войти>></button></p>          
+                <input id="html" type="checkbox"> <!-- Чекбокс для запоминания пользователя на компьютере -->
+                <label for="html">Запомнить меня на этом компьютере</label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

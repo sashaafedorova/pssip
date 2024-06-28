@@ -1,0 +1,105 @@
+.grid {
+    display: grid;
+    background-color: #ddd;
+    border-style: ridge;
+    max-width: 1460px; /* max-width*/
+    min-height: 1000px;
+}
+.cell {
+    border-style: ridge;
+}
+
+@media screen and (max-width: 2000px) {
+    .grid{
+    grid-template-columns: [column1] 20% [column2] 15% [column3] 5% [column4] 20% [column5] 5% [column6] 15% [column7] 20% [end];
+    grid-template-rows: [row1] 10% [row2] 40% [row3] 40% [row4] 10% [last];
+    }
+
+.g1{
+ grid-column: column1 / end; grid-row: row1 / row2 ; }
+
+.g2{
+    grid-column: column1 / column3; grid-row: row2;
+}
+.g3{
+    grid-column: column3 / column6; grid-row: row2;
+}
+.g4{
+    grid-column: column6 / end; grid-row: row2;
+}
+.g5{
+    grid-column: column1 / column2; grid-row: row3;
+}
+.g6{
+    grid-column: column2 / column4; grid-row: row3;
+}
+.g7{
+    grid-column: column4 / column5; grid-row: row3;
+}
+.g8{
+    grid-column: column5 / column7; grid-row: row3;
+}
+.g9{
+    grid-column: column7 / end; grid-row: row3 ;
+}
+.g10{
+    grid-column: column1 / end; grid-row: row4;
+}
+}
+
+@media screen and ( max-width: 768px) {
+    .grid{
+    grid-template-columns: [columns1] 50% [columns2] 50% [end];
+    grid-template-rows: [row1] 5% [row2] 20% [row3] 10% [row4] 10% [row5] 20% [row6] 20% [row7] 10% [row8] 5% [last];
+    }
+    
+.g1{
+grid-column: columns1 / end ;
+grid-row: row1;
+}
+
+.g2{
+    grid-column: columns1 / end ;
+    grid-row: row2;
+}
+
+.g3{
+    grid-column: columns1 / end;
+    grid-row: row3;
+}
+
+.g4{
+    grid-column: columns1 / end;
+    grid-row: row4;
+}
+
+.g5{
+    grid-column: columns1 / columns2;
+    grid-row: row5;
+}
+
+.g6{
+    grid-column: columns2 / end ;
+    grid-row: row5;
+}
+
+.g7{
+    grid-column:columns1 / columns2 ;
+    grid-row: row6;
+}
+
+.g8{
+    grid-column:columns2 / end ;
+    grid-row: row6;
+}
+
+.g9{
+    grid-column:columns1 / end ;
+    grid-row: row7;
+}
+
+.g10{
+    grid-column:columns1 / end;
+    grid-row: row8 / last;
+}
+}
