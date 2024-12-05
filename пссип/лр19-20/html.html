@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интернет-магазин</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+    }
+    .catalog, .cart {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .catalog h2, .cart h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      background-color: #fefefe;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    .product p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .product button {
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .product button:hover {
+      background-color: #45a049;
+    }
+    .cart-item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-item button {
+      padding: 5px 10px;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .cart-item button:hover {
+      background-color: #e53935;
+    }
+    .cart p {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: right;
+    }
+    #cart-total {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Интернет-магазин</h1>
+  <div class="catalog">
+    <h2>Каталог товаров</h2>
+    <div id="product-list"></div>
+  </div>
+  <div class="cart">
+    <h2>Корзина</h2>
+    <div id="cart-items"></div>
+    <p>Общая сумма: <span id="cart-total">0</span> ₽</p>
+  </div>
+
+  <script>
+    // JSON-данные с товарами
+    const products = [
+      { "id": 1, "name": "Электрический чайник", "price": 3000, "description": "Быстрокипящий электрический чайник, объем 1.7 литра" },
+      { "id": 2, "name": "Очиститель воздуха", "price": 7500, "description": "Компактный и эффективный очиститель воздуха" },
+      { "id": 3, "name": "Кофемашина", "price": 16500, "description": "Автоматическая кофемашина для приготовления эспрессо" },
+      { "id": 4, "name": "Фитнес-браслет", "price": 6000, "description": "Водонепроницаемый фитнес-браслет с монитором сердечного ритма" },
+      { "id": 5, "name": "Умная лампочка", "price": 1200, "description": "RGB лампочка с Wi-Fi управлением" },
+      { "id": 6, "name": "Электросамокат", "price": 30000, "description": "Складной электросамокат с запасом хода 25 км" },
+      { "id": 7, "name": "Цифровая камера", "price": 40000, "description": "Компактная цифровая камера с 24 МП сенсором" },
+      { "id": 8, "name": "Беспроводное зарядное устройство", "price": 2500, "description": "Скоростная беспроводная зарядка для смартфонов" },
+      { "id": 9, "name": "Блендер", "price": 8000, "description": "Высокоскоростной блендер с несколькими режимами" },
+      { "id": 10, "name": "Умный дверной звонок", "price": 9000, "description": "Видеозвонок с поддержкой Wi-Fi и детектором движения" }
+    ];
+
+    const productList = document.getElementById('product-list');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+
+    let cart = [];
+
+    // Отображение каталога
+    products.forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.className = 'product';
+      productDiv.innerHTML = `
+        <div>
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p>Цена: ${product.price} ₽</p>
+        </div>
+        <button onclick="addToCart(${product.id})">Добавить в корзину</button>
+      `;
+      productList.appendChild(productDiv);
+    });
+
+    // Функция добавления в корзину
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      updateCart();
+    }
+
+    // Обновление корзины
+    function updateCart() {
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <p>${item.name} - ${item.price} ₽</p>
+          <button onclick="removeFromCart(${index})">Удалить</button>
+        `;
+        cartItems.appendChild(cartItem);
+        total += item.price;
+      });
+
+      cartTotal.textContent = total;
+    }
+
+    // Функция удаления из корзины
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+  </script>
+</body>
+</html>

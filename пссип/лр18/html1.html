@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демонстрация RegExp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #2896a7;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2896a7;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Демонстрация методов RegExp и строк</h1>
+
+<label for="inputText">Введите текст:</label>
+<textarea id="inputText" rows="4"></textarea>
+
+<label for="regexInput">Введите регулярное выражение:</label>
+<input type="text" id="regexInput" value="привет" />
+
+<button id="testButton">Тестировать (test)</button>
+<button id="execButton">Извлечь (exec)</button>
+<button id="splitButton">Разделить (split)</button>
+<button id="matchButton">Найти (match)</button>
+<button id="searchButton">Поиск (search)</button>
+<button id="replaceButton">Заменить (replace)</button>
+
+<div class="result" id="result"></div>
+
+<script src="script1.js"></script>
+
+</body>
+</html>

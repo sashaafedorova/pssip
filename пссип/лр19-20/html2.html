@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Работа с Cookie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    form, .buttons {
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 48%;
+      padding: 10px;
+      margin: 10px 1%;
+      border: none;
+      border-radius: 5px;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    #cookie-data {
+      text-align: center;
+      margin: 20px auto;
+      padding: 15px;
+      width: 90%;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Форма для ввода данных</h1>
+  <form id="user-form">
+    <label for="name">ФИО:</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Электронная почта:</label>
+    <input type="email" id="email" required>
+
+    <label for="dob">Дата рождения:</label>
+    <input type="date" id="dob" required>
+
+    <label for="place">Место рождения:</label>
+    <input type="text" id="place" required>
+
+    <label for="hobbies">Увлечения:</label>
+    <input type="text" id="hobbies" required>
+
+    <button type="submit">Сохранить данные</button>
+  </form>
+
+  <h2>Сохраненные данные</h2>
+  <div class="buttons">
+    <button onclick="showCookieData()">Показать сохраненные данные</button>
+    <button onclick="clearCookie()">Очистить Cookie</button>
+  </div>
+
+  <div id="cookie-data"></div>
+
+  <script>
+    // Функция для установки Cookie
+    function setCookie(name, value, days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Устанавливаем срок действия
+      const expires = "expires=" + date.toUTCString();
+      document.cookie = `${name}=${value}; ${expires}; path=/`;
+    }
+
+    // Функция для получения данных из Cookie
+    function getCookie(name) {
+      const nameEq = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(nameEq) === 0) return c.substring(nameEq.length, c.length);
+      }
+      return "";
+    }
+
+    // Функция для очистки Cookie
+    function clearCookie() {
+      document.cookie = "user_data=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+      document.getElementById("cookie-data").textContent = "Cookie очищены!";
+    }
+
+    // Функция для отображения данных из Cookie
+    function showCookieData() {
+      const cookieData = getCookie("user_data");
+      if (cookieData) {
+        document.getElementById("cookie-data").textContent = `Данные пользователя: ${cookieData}`;
+      } else {
+        document.getElementById("cookie-data").textContent = "Данные не найдены в Cookie.";
+      }
+    }
+
+    // Обработчик формы для сохранения данных в Cookie
+    document.getElementById("user-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const dob = document.getElementById("dob").value;
+      const place = document.getElementById("place").value;
+      const hobbies = document.getElementById("hobbies").value;
+
+      const userData = `ФИО: ${name}, Почта: ${email}, Дата рождения: ${dob}, Место рождения: ${place}, Увлечения: ${hobbies}`;
+
+      setCookie("user_data", userData, 7); // Сохраняем в Cookie на 7 дней
+      alert("Данные сохранены в Cookie!");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма с валидацией</title>
+  <style>
+    label { display: block; margin-top: 10px; }
+    .error { color: red; font-size: 0.9em; display: none; }
+    .input-error { border-color: red; }
+  </style>
+</head>
+<body>
+  <h1>Заполните форму</h1>
+  <form id="userForm" novalidate>
+
+    <label>Имя:
+      <input type="text" id="name" name="name" placeholder="Введите ваше имя"          required>
+    </label>
+    <label>Фамилия:
+      <input type="text" id="surname" name="surname" placeholder="Введите вашу фамилию" required>
+    </label>
+    <label>Email:
+      <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+    </label>
+
+    <label>Пол:</label>
+    <label>
+      <input type="radio" name="gender" value="Мужской"> Мужской
+    </label>
+    <label>
+      <input type="radio" name="gender" value="Женский"> Женский
+    </label>
+    <span id="genderError" class="error">Пол обязателен для заполнения</span>
+
+    <label>Выберите страну:
+      <select id="country" name="country">
+        <option value="Беларусь">Беларусь</option>
+        <option value="Польша">Польша</option>
+        <option value="Россия">Россия</option>
+      </select>
+    </label>
+
+    <label>Выберите хобби:</label>
+    <label>
+      <input type="checkbox" name="hobbies" value="Чтение"> Чтение
+    </label>
+    <label>
+      <input type="checkbox" name="hobbies" value="Спорт"> Спорт
+    </label>
+    <label>
+      <input type="checkbox" name="hobbies" value="Музыка"> Музыка
+    </label>
+    <label>
+      <input type="checkbox" name="hobbies" value="Путешествия"> Путешествия
+    </label>
+
+    <button type="button" onclick="validateForm()">Отправить</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>

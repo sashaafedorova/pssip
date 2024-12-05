@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Работа с LocalStorage</title>
+  <style>
+    /* Общие стили для страницы */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1, h2 {
+      color: #4CAF50;
+      text-align: center;
+    }
+
+    /* Стили для формы */
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 8px 0 4px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Стили для отображения данных */
+    #localstorage-data {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .action-buttons button {
+      width: auto;
+      padding: 8px 16px;
+      background-color: #2196F3;
+    }
+
+    .action-buttons button:hover {
+      background-color: #1E88E5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Форма для ввода данных</h1>
+
+  <form id="user-form">
+    <label for="name">ФИО:</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Электронная почта:</label>
+    <input type="email" id="email" required>
+
+    <label for="dob">Дата рождения:</label>
+    <input type="date" id="dob" required>
+
+    <label for="place">Место рождения:</label>
+    <input type="text" id="place" required>
+
+    <label for="hobbies">Увлечения:</label>
+    <input type="text" id="hobbies" required>
+
+    <button type="submit">Сохранить данные</button>
+  </form>
+
+  <h2>Сохраненные данные</h2>
+
+  <div id="localstorage-data">Данные не сохранены.</div>
+
+  <div class="action-buttons">
+    <button onclick="showLocalStorageData()">Показать сохраненные данные</button>
+    <button onclick="clearLocalStorage()">Очистить LocalStorage</button>
+  </div>
+
+  <script>
+    // Функция для сохранения данных в LocalStorage
+    function saveToLocalStorage(name, value) {
+      localStorage.setItem(name, value);
+    }
+
+    // Функция для получения данных из LocalStorage
+    function getFromLocalStorage(name) {
+      return localStorage.getItem(name);
+    }
+
+    // Функция для очистки данных из LocalStorage
+    function clearLocalStorage() {
+      localStorage.clear();
+      document.getElementById("localstorage-data").textContent = "LocalStorage очищен!";
+    }
+
+    // Функция для отображения данных из LocalStorage
+    function showLocalStorageData() {
+      const userData = getFromLocalStorage("user_data");
+      if (userData) {
+        document.getElementById("localstorage-data").textContent = `Данные пользователя: ${userData}`;
+      } else {
+        document.getElementById("localstorage-data").textContent = "Данные не найдены в LocalStorage.";
+      }
+    }
+
+    // Обработчик формы для сохранения данных в LocalStorage
+    document.getElementById("user-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const dob = document.getElementById("dob").value;
+      const place = document.getElementById("place").value;
+      const hobbies = document.getElementById("hobbies").value;
+
+      const userData = `ФИО: ${name}, Почта: ${email}, Дата рождения: ${dob}, Место рождения: ${place}, Увлечения: ${hobbies}`;
+
+      saveToLocalStorage("user_data", userData);
+      alert("Данные сохранены в LocalStorage!");
+    });
+  </script>
+
+</body>
+</html>

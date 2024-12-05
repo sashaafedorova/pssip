@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>События</title>
+    <style>
+        #draggable {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 20px;
+            position: relative;
+        }
+        #dropzone {
+            width: 200px;
+            height: 200px;
+            background-color: lightgreen;
+            border: 2px dashed #333;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Обработка событий</h1>
+
+<div id="draggable" draggable="true">Перетащи меня</div>
+<div id="dropzone">Здесь сбрось</div>
+
+<input type="text" id="inputField" placeholder="Нажми клавишу...">
+<div id="scrollable" style="overflow-y: scroll; height: 100px; border: 1px solid black;">
+    <div style="height: 300px;">Прокручиваемый контент</div>
+</div>
+
+<script>
+    // События мыши
+    const draggable = document.getElementById('draggable');
+    draggable.addEventListener('mousedown', () => {
+        console.log('Мышь нажата на элементе');
+    });
+
+    // События клавиатуры
+    const inputField = document.getElementById('inputField');
+    inputField.addEventListener('keydown', (event) => {
+        console.log(Нажата клавиша: ${event.key});
+    });
+
+    // Drag & Drop события
+    const dropzone = document.getElementById('dropzone');
+    draggable.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('text/plain', 'Это элемент для перетаскивания');
+        console.log('Начато перетаскивание');
+    });
+
+    dropzone.addEventListener('dragover', (event) => {
+        event.preventDefault(); // Позволяем сброс
+    });
+
+    dropzone.addEventListener('drop', (event) => {
+        event.preventDefault();
+        console.log('Элемент сброшен');
+    });
+
+    // События указателя
+    draggable.addEventListener('pointerdown', () => {
+        console.log('Указатель на элементе');
+    });
+
+    // События полосы прокрутки
+    const scrollable = document.getElementById('scrollable');
+    scrollable.addEventListener('scroll', () => {
+        console.log('Прокрутка выполнена');
+    });
+
+    // События сенсорных экранов
+    draggable.addEventListener('touchstart', () => {
+        console.log('Сенсорный экран: касание начато');
+    });
+
+    // События, связанные с таймером
+    setInterval(() => {
+        console.log('Таймер сработал через 1 секунду');
+    }, 1000);
+</script>
+
+</body>
+</html>

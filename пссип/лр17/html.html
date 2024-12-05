@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры интерфейсных событий</title>
+    <style>
+        .section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+        .drop-zone { width: 150px; height: 150px; border: 2px dashed #333; text-align: center; line-height: 150px; }
+    </style>
+</head>
+<body>
+
+<h1>Примеры интерфейсных событий</h1>
+
+<div class="section">
+    <h2>События мыши</h2>
+    <button id="mouseButton">Нажми на меня</button>
+</div>
+
+<div class="section">
+    <h2>События клавиатуры</h2>
+    <input type="text" id="keyboardInput" placeholder="Нажмите любую клавишу">
+    <p id="keyCodeDisplay">Код клавиши: </p>
+</div>
+
+<div class="section">
+    <h2>Drag&Drop события</h2>
+    <img src="1.jpg" id="draggableImage" draggable="true" alt="Перетаскиваемое изображение" width="150" height="150">
+
+    <div class="drop-zone" id="dropZone">Перетащите сюда</div>
+</div>
+
+<div class="section">
+    <h2>События указателя</h2>
+    <div id="pointerBox" style="width: 200px; height: 100px; background-color: lightblue;">Наведи на меня</div>
+</div>
+
+<div class="section">
+    <h2>События полосы прокрутки</h2>
+    <p>Прокрутите страницу, чтобы увидеть позицию прокрутки</p>
+    <div id="scrollDisplay">Позиция прокрутки: 0</div>
+</div>
+
+<div class="section">
+    <h2>События, связанные с таймером</h2>
+    <p>Текущее время: <span id="timeDisplay"></span></p>
+</div> 
+
+<script src="scripts.js"></script>
+</body>
+</html>
